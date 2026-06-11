@@ -1813,4 +1813,20 @@ body {
     .slide-bg, .slide-bg-split {
         height: 100% !important;
     }
+    /* Disable reveal animations / fading on mobile so text is always readable */
+    .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .slide-title {
+        animation: none !important;
+        clip-path: none !important;
+        transform: none !important;
+    }
+    .slide-content {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }

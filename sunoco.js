@@ -243,6 +243,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const offset = scrollTop - slideTop;
             const ratio = offset / slideHeight; // -1 to 1
             
+            // Check if it's mobile viewport to prevent fading/clipping texts during scroll
+            const isMobile = window.innerWidth <= 992;
+            
+            if (isMobile) {
+                if (bg) {
+                    bg.style.transform = '';
+                    bg.style.opacity = '1';
+                }
+                if (content) {
+                    content.style.transform = '';
+                    content.style.opacity = '1';
+                }
+                return;
+            }
+            
             if (Math.abs(ratio) < 1) {
                 // Background transform
                 if (bg) {
