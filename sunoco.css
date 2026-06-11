@@ -1798,6 +1798,21 @@ body {
     animation: dynamic-scale-pulse 3.5s ease-in-out infinite;
 }
 
+/* Responsive Grid Classes for Layout Optimization */
+.responsive-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+}
+
+.campaign-split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: center;
+}
+
 /* Mobile responsive layout height and scroll snap overrides */
 @media (max-width: 992px) {
     .deck-container {
@@ -1828,5 +1843,31 @@ body {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+    }
+    
+    /* Layout stacking fixes for mobile screen sizes */
+    .responsive-grid-2col {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .campaign-split-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    .campaign-large-media .film-thumb {
+        height: auto !important;
+        aspect-ratio: 16/10 !important;
+    }
+    .quadrant-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    .kpi-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    .team-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
     }
 }
