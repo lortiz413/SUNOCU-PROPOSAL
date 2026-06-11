@@ -1892,4 +1892,23 @@ body {
     .badge-text {
         display: none !important;
     }
+
+    /* Slide 17 Operational Assumptions mobile overrides */
+    .assumptions-box {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 30px !important;
+    }
+    .assumptions-text {
+        width: 100% !important;
+        flex: none !important;
+    }
+    .ghost-number-container {
+        width: 100% !important;
+        flex: none !important;
+        margin-top: 20px !important;
+    }
+    .ghost-number {
+        font-size: 110px !important;
+    }
 }
