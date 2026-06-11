@@ -307,4 +307,38 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(slide12);
         }
     }
+
+    // ==========================================
+    // 7. Interactive 3D Card Tilting Effect
+    // ==========================================
+    const tiltCards = document.querySelectorAll('.glass-stat-card, .kpi-card, .rhythm-block, .team-card, .investment-tag-card, .service-icon-card, .quadrant-card');
+    
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate relative offset from center of card (-0.5 to 0.5)
+            const xc = rect.width / 2;
+            const yc = rect.height / 2;
+            
+            // Maximum tilt rotation (degrees)
+            const maxTilt = 8;
+            const rotateX = ((yc - y) / yc) * maxTilt;
+            const rotateY = ((x - xc) / xc) * maxTilt;
+            
+            // Apply style transformations
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            card.style.boxShadow = `0 15px 30px rgba(255, 230, 0, 0.15), 0 30px 60px rgba(0, 0, 0, 0.6)`;
+            card.style.borderColor = `rgba(255, 230, 0, 0.4)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            // Smoothly reset transformations on leave
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            card.style.boxShadow = '';
+            card.style.borderColor = '';
+        });
+    });
 });
