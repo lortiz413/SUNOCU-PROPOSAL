@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espresso Type - Cozy Modern Size Selector & Workflow Dashboard</title>
+    <meta name="description" content="Dashboard interactivo para diseñar el display de selección de tamaños de café (Concepto Cozy Modern - Sin Círculos y Escalonado) y generar el workflow para el Agente de Magnific AI.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS link -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar: Control Panel & Prompts -->
+        <aside class="sidebar">
+            <header class="brand-header">
+                <div class="logo">
+                    <span class="logo-icon">☕</span>
+                    <h1>Cozy Modern</h1>
+                </div>
+                <p class="subtitle" style="margin-bottom: 14px;">Escalonado • Display de Café 9"x12"</p>
+                <a href="sunoco.html" class="btn btn-secondary" style="text-decoration: none; border-color: var(--gold); color: var(--gold); background: rgba(212, 168, 71, 0.05); font-size: 11px; padding: 8px 14px; letter-spacing: 1px; display: inline-flex; width: auto; font-weight: 600;">
+                    🏎️ VER PROPUESTA SUNOCO
+                </a>
+            </header>
+
+            <!-- Prompts Section -->
+            <section class="prompt-box-section">
+                <div class="section-title">
+                    <h2>📋 Prompts Generativos</h2>
+                </div>
+
+                <!-- Prompt 1: NanoBanana 2 -->
+                <div class="prompt-card">
+                    <div class="prompt-card-header">
+                        <h3>NanoBanana 2 Prompt</h3>
+                        <span class="badge badge-image">Imagen</span>
+                    </div>
+                    <p class="prompt-desc">Copia este prompt para generar la imagen de estilo cozy modern / Brooklyn cafe en NanoBanana 2 / Flux.</p>
+                    <div class="textarea-wrapper">
+                        <textarea id="nanobanana-prompt" readonly>A premium 9x12 vertical cafe poster design for a size selection guide. Style: Modern cozy cafe aesthetic, flat design, clean minimalist graphic art. Background: Smooth warm cream-ivory paper card texture. Layout: High clearance design. The typography and brand elements are positioned strictly in the upper 55% of the vertical canvas. The bottom 45% of the poster is kept completely empty as clean warm cream negative space, ensuring that physical coffee cups placed on the base of the L-stand do not cover the text. Typography: Bold, chunky, ultra-condensed uppercase sans-serif font (Bebas Neue style). The sizes 'GRANDE', 'REGULAR', and 'PEQUEÑO' are stacked vertically. They are arranged in a staggered, staircase-like stepped alignment: 'GRANDE' is at the top (right-aligned, largest scale), 'REGULAR' is in the middle (center-aligned, medium scale), and 'PEQUEÑO' is at the bottom (left-aligned, smallest scale), forming an ascending staircase alignment from left to right matching the height progression of physical cups. Color Palette: Muted slate blue for 'PEQUEÑO' and 'GRANDE', and a warm espresso dark brown for 'REGULAR'. At the top center, the minimalist yellow logo icon of a stylized roof profile is cleanly printed. Below the logo, the subtitle 'SELECCIÓN DE TAMAÑO' is printed in a small, widely spaced clean sans-serif font. At the bottom, tiny, clean secondary text reads 'El Mesón Sandwiches • Premium Espresso'. Overall: Clean, editorial, trendy graphic design poster, high contrast, perfect alignment, no cups, no circles, no photoreal liquid swirls.</textarea>
+                    </div>
+                    <button class="btn btn-primary btn-copy" onclick="copyText('nanobanana-prompt', this)" id="btn-copy-nano">
+                        <span class="btn-icon">📋</span> Copiar Prompt de Imagen
+                    </button>
+                </div>
+
+                <!-- Prompt 2: Magnific AI Agent Workflow -->
+                <div class="prompt-card">
+                    <div class="prompt-card-header">
+                        <h3>Magnific Workflow Prompt</h3>
+                        <span class="badge badge-workflow">Workflow</span>
+                    </div>
+                    <p class="prompt-desc">Copia este prompt para que el agente de IA estructure la pipeline en nodos con este nuevo estilo tipográfico.</p>
+                    <div class="textarea-wrapper">
+                        <textarea id="agent-prompt" readonly>You are an expert AI creative workflow architect specializing in generative AI production pipelines for print advertising.
+
+Your task is to design a complete node-based workflow to produce a 9x12 inch café size selection display advertisement (2700px x 3600px) at 300 DPI print quality based on a cozy modern typography layout designed for high clearance.
+
+The final design features a warm cream paper card background. To prevent physical cups on the stand from obscuring the text, all typography must sit in the upper 55% of the poster, leaving the bottom 45% as empty cream negative space. At the top center is a bright yellow logo icon (stylized roof outline), with the clean subtitle 'SELECCIÓN DE TAMAÑO' directly below. Below that, the size names 'GRANDE' (top, right-aligned, muted slate blue, largest scale), 'REGULAR' (middle, center-aligned, espresso brown, medium scale), and 'PEQUEÑO' (bottom, left-aligned, muted slate blue, smallest scale) are stacked vertically in a bold, condensed uppercase sans-serif font (Bebas Neue style), creating a staggered staircase layout rising from left to right. A tiny footnote at the bottom reads 'El Mesón Sandwiches • Premium Espresso'. No cups, no circles.
+
+Please output:
+1. A detailed Node Graph description showing:
+   - Numbered Nodes (1-15)
+   - Connection arrows (→) and Parallel tracks (||)
+   - Dependency structures
+2. For each node, detail:
+   - Tool used (NanoBanana 2, Flux, Magnific Pro, Photoshop/Illustrator, Topaz, or equivalent)
+   - Inputs and Outputs
+   - Precise settings (prompts, aspect ratios, scale factors, denoisers, blend modes, font parameters)
+3. A 60-minute step-by-step production sequence that a creative operator can follow to build the poster.
+
+The node categories MUST include:
+- [INPUT NODES] (Specs, Palette, Typography Assets, Brand Yellow Vector, Reference Layout Image)
+- [GENERATION NODES] (Smooth cream paper texture generator, ultra-high resolution letter texturing overlay)
+- [COMPOSITING, STAGGERING & COLORING] (Vector layout placement, staircase alignment coordinates, blue/brown color mapping, bottom footer placement with high vertical clearance offset)
+- [REFINEMENT & UPSCALING] (Topaz/Magnific upscaler to 300 DPI for clean vector-like crisp edges)
+- [COLOR GRADING & PRINT EXPORT] (grading LUT, CMYK conversion, TIFF/PNG export)</textarea>
+                    </div>
+                    <button class="btn btn-secondary btn-copy" onclick="copyText('agent-prompt', this)" id="btn-copy-agent">
+                        <span class="btn-icon">📋</span> Copiar Prompt de Agente
+                    </button>
+                </div>
+            </section>
+
+            <!-- Interactive Settings -->
+            <section class="controls-section">
+                <div class="section-title">
+                    <h2>⚙️ Configuración del Display</h2>
+                </div>
+
+                <!-- Font Select -->
+                <div class="control-group">
+                    <label for="font-family-select">Tipografía Principal</label>
+                    <select id="font-family-select" class="form-control" onchange="updatePoster()">
+                        <option value="'Bebas Neue', sans-serif">Bebas Neue (Condensado Bold)</option>
+                        <option value="'Anton', sans-serif">Anton (Ultra Heavy)</option>
+                        <option value="'Inter', sans-serif">Inter (Moderno Minimalista)</option>
+                    </select>
+                </div>
+
+                <!-- Horizontal sizes scales -->
+                <div class="control-group">
+                    <label for="scale-pequeno">Escala PEQUEÑO (<span id="val-pequeno">1.40</span>x)</label>
+                    <input type="range" id="scale-pequeno" min="1.0" max="2.0" step="0.05" value="1.4" oninput="updatePoster()">
+                </div>
+
+                <div class="control-group">
+                    <label for="scale-regular">Escala REGULAR (<span id="val-regular">2.10</span>x)</label>
+                    <input type="range" id="scale-regular" min="1.8" max="2.8" step="0.05" value="2.1" oninput="updatePoster()">
+                </div>
+
+                <div class="control-group">
+                    <label for="scale-grande">Escala GRANDE (<span id="val-grande">2.90</span>x)</label>
+                    <input type="range" id="scale-grande" min="2.5" max="3.8" step="0.05" value="2.9" oninput="updatePoster()">
+                </div>
+
+                <!-- Alignment select -->
+                <div class="control-group">
+                    <label for="align-style">Alineación del Texto</label>
+                    <select id="align-style" class="form-control" onchange="updatePoster()">
+                        <option value="staggered">Escalonado (Staircase)</option>
+                        <option value="center">Centrado Estricto</option>
+                        <option value="left">Alineado a la Izquierda</option>
+                    </select>
+                </div>
+
+                <!-- Color Palette -->
+                <div class="control-group">
+                    <label for="color-palette">Paleta de Colores</label>
+                    <select id="color-palette" class="form-control" onchange="updatePoster()">
+                        <option value="classic">Muted Blue & Espresso (Foto)</option>
+                        <option value="terracotta">Terracota & Pizarra</option>
+                        <option value="emerald">Verde Esmeralda & Carbón</option>
+                        <option value="monochrome">Espresso Monocromo</option>
+                    </select>
+                </div>
+
+                <!-- Background Color Selector -->
+                <div class="control-group">
+                    <label for="bg-color">Color de Fondo</label>
+                    <select id="bg-color" class="form-control" onchange="updatePoster()">
+                        <option value="cozy-cream" selected>Crema Cálido</option>
+                        <option value="espresso-brown">Marrón Espresso (Oscuro)</option>
+                        <option value="muted-blue">Azul Grisáceo (Apagado)</option>
+                        <option value="sand-tan">Arena Arena</option>
+                    </select>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Main Display Content -->
+        <main class="main-content">
+            <!-- Tabs Navigation -->
+            <nav class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('poster-tab', this)" id="tab-btn-poster">
+                    🖼️ Vista Previa del Display (9"x12")
+                </button>
+                <button class="tab-btn" onclick="switchTab('workflow-tab', this)" id="tab-btn-workflow">
+                    ⚙️ Workflow de Nodos (Magnific)
+                </button>
+                <button class="tab-btn" onclick="switchTab('ideas-tab', this)" id="tab-btn-ideas">
+                    💡 Ideas para el Stand Físico
+                </button>
+            </nav>
+
+            <!-- Tab 1: Poster Preview Panel -->
+            <div id="poster-tab" class="tab-panel active">
+                <div class="panel-layout">
+                    <!-- Left: Interactive Canvas -->
+                    <div class="canvas-container-wrapper">
+                        <div class="canvas-header">
+                            <span class="ratio-label">Aspect Ratio: 9x12 Portrait (Cozy Modern)</span>
+                            <span class="print-label">Simulación Tipográfica Escalonada</span>
+                        </div>
+                        <div class="poster-canvas theme-cozy-cream" id="poster-canvas">
+                            
+                            <!-- Content Structure -->
+                            <div class="poster-inner cozy-modern-layout">
+                                <div class="coffee-cup-topview">
+                                    <div class="saucer">
+                                        <div class="cup">
+                                            <div class="crema"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="title-section-cozy">
+                                    <!-- Embedded brand yellow logo icon SVG -->
+                                    <div class="brand-logo-container-cozy">
+                                        <svg viewBox="0 0 100 30" class="brand-logo-svg">
+                                            <path d="M 5,20 L 45,20 L 70,5 L 95,15" fill="none" stroke="#FFE600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="poster-title-spaced">SELECCIÓN DE TAMAÑO</h4>
+                                </div>
+                                
+                                <div class="sizes-vertical-staggered" id="sizes-staggered-container">
+                                    <!-- PEQUEÑO -->
+                                    <div class="size-row-item text-blue" id="item-pequeno">
+                                        <span class="size-text-bold">PEQUEÑO</span>
+                                    </div>
+                                    
+                                    <!-- REGULAR -->
+                                    <div class="size-row-item text-brown" id="item-regular">
+                                        <span class="size-text-bold">REGULAR</span>
+                                    </div>
+                                    
+                                    <!-- GRANDE -->
+                                    <div class="size-row-item text-blue" id="item-grande">
+                                        <span class="size-text-bold">GRANDE</span>
+                                    </div>
+                                </div>
+
+                                <div class="footer-cozy">
+                                    <p>EL MESÓN SANDWICHES • PREMIUM ESPRESSO</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Reference & Concept Details -->
+                    <div class="details-panel">
+                        <div class="details-card">
+                            <h3>☕ Estilo: Cozy Modern Space</h3>
+                            <p>Inspirado en la tipografía condensada y la composición limpia de cafeterías contemporáneas. Sin círculos ni elementos distractores, la tipografía pura en escala escalonada guía al cliente.</p>
+                            
+                            <div class="image-preview-box">
+                                <span class="img-label">Diseño Tipográfico (NanoBanana 2)</span>
+                                <img src="assets/cozy_staircase_high.png" alt="Cozy modern poster preview" class="ref-img">
+                            </div>
+
+                            <div class="concept-breakdown">
+                                <h4>Claves del Nuevo Diseño:</h4>
+                                <ul>
+                                    <li><strong>Tipografía de la Foto:</strong> Letras gruesas, condensadas y en caja alta para un look editorial sumamente moderno.</li>
+                                    <li><strong>Estructura Escalonada:</strong> Las palabras están dispuestas en escalera (izquierda, centro, derecha) simulando peldaños.</li>
+                                    <li><strong>Fórmula de Color:</strong> Azul grisáceo apagado y marrón espresso cálido sobre un fondo crema limpio.</li>
+                                    <li><strong>Sin Círculos:</strong> Toda la información de tamaño se expresa únicamente mediante la escala de la tipografía.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Workflow Node Graph Panel -->
+            <div id="workflow-tab" class="tab-panel">
+                <div class="panel-layout">
+                    <!-- Left: Interactive SVG/HTML Node Graph -->
+                    <div class="node-graph-wrapper">
+                        <div class="canvas-header">
+                            <span class="ratio-label">Arquitectura del Workflow en Nodos (Cozy Modern)</span>
+                            <span class="print-label">Click en los nodos para ver detalles</span>
+                        </div>
+                        <div class="graph-container">
+                            <div class="graph-scroll-area" id="graph-scroll-area">
+                                <svg class="svg-connections" id="svg-connections"></svg>
+                                
+                                <!-- Columns of nodes representing stages -->
+                                <div class="graph-columns">
+                                    <!-- Col 1: Inputs -->
+                                    <div class="graph-col">
+                                        <div class="col-header">Inputs</div>
+                                        
+                                        <div class="node-item" id="node-1" onclick="showNodeDetails(1)">
+                                            <div class="node-badge node-input-badge">Input 1</div>
+                                            <h4>Especificación Canvas</h4>
+                                            <p>2700x3600px (9x12" 300 DPI)</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-2" onclick="showNodeDetails(2)">
+                                            <div class="node-badge node-input-badge">Input 2</div>
+                                            <h4>Logotipo y Tipografía</h4>
+                                            <p>Logo Amarillo y Tipografías Condensadas</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-3" onclick="showNodeDetails(3)">
+                                            <div class="node-badge node-input-badge">Input 3</div>
+                                            <h4>Muestras de Color</h4>
+                                            <p>Azul Grisáceo y Espresso Tinto</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Col 2: Generation -->
+                                    <div class="graph-col">
+                                        <div class="col-header">Generación Base</div>
+                                        
+                                        <div class="node-item" id="node-4" onclick="showNodeDetails(4)">
+                                            <div class="node-badge node-gen-badge">Gen 4</div>
+                                            <h4>Fondo Papel Crema</h4>
+                                            <p>Flux / NanoBanana 2</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-5" onclick="showNodeDetails(5)">
+                                            <div class="node-badge node-gen-badge">Gen 5</div>
+                                            <h4>Capa de Ruido Orgánico</h4>
+                                            <p>Textura Fibra de Papel</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Col 3: Compositing & Masks -->
+                                    <div class="graph-col">
+                                        <div class="col-header">Composición</div>
+                                        
+                                        <div class="node-item" id="node-6" onclick="showNodeDetails(6)">
+                                            <div class="node-badge node-comp-badge">Comp 6</div>
+                                            <h4>Maquetación Tipográfica</h4>
+                                            <p>Alineación Escalonada (Izquierda/Centro/Derecha)</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-7" onclick="showNodeDetails(7)">
+                                            <div class="node-badge node-comp-badge">Comp 7</div>
+                                            <h4>Escalado Progresivo</h4>
+                                            <p>Crecimiento en Altura de las Palabras</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-8" onclick="showNodeDetails(8)">
+                                            <div class="node-badge node-comp-badge">Comp 8</div>
+                                            <h4>Integración de Capas</h4>
+                                            <p>Máscara de Opacidad de Logotipo</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Col 4: Upscaling & Grading -->
+                                    <div class="graph-col">
+                                        <div class="col-header">Refinamiento</div>
+                                        
+                                        <div class="node-item" id="node-9" onclick="showNodeDetails(9)">
+                                            <div class="node-badge node-refine-badge">Refine 9</div>
+                                            <h4>Reescalado Magnific Pro</h4>
+                                            <p>Crispación de Bordes Vectoriales</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-10" onclick="showNodeDetails(10)">
+                                            <div class="node-badge node-refine-badge">Refine 10</div>
+                                            <h4>Equilibrio de Color LUT</h4>
+                                            <p>Portra 160 / Cozy Tones</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-11" onclick="showNodeDetails(11)">
+                                            <div class="node-badge node-refine-badge">Refine 11</div>
+                                            <h4>Simulación de Imprenta</h4>
+                                            <p>Filtro Orgánico Mate</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Col 5: Output -->
+                                    <div class="graph-col">
+                                        <div class="col-header">Salida</div>
+                                        
+                                        <div class="node-item" id="node-12" onclick="showNodeDetails(12)">
+                                            <div class="node-badge node-out-badge">Output 12</div>
+                                            <h4>Conversión a CMYK</h4>
+                                            <p>Calibrado Perfil FOGRA39 Imprenta</p>
+                                        </div>
+
+                                        <div class="node-item" id="node-13" onclick="showNodeDetails(13)">
+                                            <div class="node-badge node-out-badge">Output 13</div>
+                                            <h4>TIFF 300 DPI Plano</h4>
+                                            <p>Archivo Imprenta Final de Alta Calidad</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Node Settings Panel -->
+                    <div class="details-panel">
+                        <div class="details-card node-details-card" id="node-details-card">
+                            <div class="node-details-header">
+                                <span class="node-details-id" id="node-detail-id">NODO 1</span>
+                                <h3 id="node-detail-name">Selecciona un Nodo</h3>
+                            </div>
+                            <div class="node-details-body" id="node-detail-body">
+                                <p class="placeholder-text">Haz click en cualquiera de los nodos en la gráfica para ver su configuración, entrada, salida, la herramienta sugerida y cómo conectarlo con el agente de Magnific AI.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Ideas Panel -->
+            <div id="ideas-tab" class="tab-panel">
+                <div class="panel-layout">
+                    <!-- Left: Large Mockup View -->
+                    <div class="canvas-container-wrapper">
+                        <div class="canvas-header">
+                            <span class="ratio-label">Visualización del Arte en tu Stand L-Stand</span>
+                            <span class="print-label">Fotografía de Producto Simulada</span>
+                        </div>
+                        <div class="mockup-stand-container">
+                            <img src="assets/stand_cozy_high_preview.png" alt="Mockup preview of display on counter" class="stand-mockup-img">
+                        </div>
+                    </div>
+
+                    <!-- Right: Creative Concepts Grid -->
+                    <div class="details-panel text-panel-scroller">
+                        <div class="details-card">
+                            <h3>💡 5 Ideas de Diseño para el Stand Blanco</h3>
+                            <p>El stand físico es una base en L acrílica blanca. Aquí tienes cómo transformarlo usando las últimas tendencias en visual merchandising:</p>
+
+                            <div class="concept-card-item">
+                                <h4 class="concept-card-title"><span class="number-circle">1</span> Minimalist Color Blocking</h4>
+                                <p class="concept-card-desc">El póster utiliza tipografías audaces en azul grisáceo y espresso sobre fondo crema. La base del stand se cubre con un vinilo en tono crema idéntico.</p>
+                                <span class="why-works"><strong>Por qué destaca:</strong> El stand se integra totalmente con el arte, haciendo desaparecer los bordes plásticos.</span>
+                            </div>
+
+                            <div class="concept-card-item">
+                                <h4 class="concept-card-title"><span class="number-circle">2</span> Matte Acrylic Overlay</h4>
+                                <p class="concept-card-desc">Sobre la placa vertical de acrílico blanco, montamos una placa de acrílico mate esmerilado translúcido con los textos impresos en serigrafía directa.</p>
+                                <span class="why-works"><strong>Por qué destaca:</strong> Logra un acabado táctil premium de muy alta gama, eliminando reflejos de luz molestos.</span>
+                            </div>
+
+                            <div class="concept-card-item">
+                                <h4 class="concept-card-title"><span class="number-circle">3</span> Staggered Guides</h4>
+                                <p class="concept-card-desc">Alineación en escalera que guía el ojo desde la izquierda (Pequeño) hasta la derecha (Grande). Encaja de forma limpia con los vasos puestos enfrente.</p>
+                                <span class="why-works"><strong>Por qué destaca:</strong> Aspecto de galería de diseño contemporáneo. Muy limpio y ordenado.</span>
+                            </div>
+
+                            <div class="concept-card-item">
+                                <h4 class="concept-card-title"><span class="number-circle">4</span> Brass Standoff Accents</h4>
+                                <p class="concept-card-desc">Si utilizas un póster impreso rígido, móntalo sobre el stand blanco usando tornillos pasadores en latón dorado en las cuatro esquinas.</p>
+                                <span class="why-works"><strong>Por qué destaca:</strong> El metal dorado contrasta de manera espectacular con los vasos y la tipografía.</span>
+                            </div>
+
+                            <div class="concept-card-item">
+                                <h4 class="concept-card-title"><span class="number-circle">5</span> Wood Clad Wrap</h4>
+                                <p class="concept-card-desc">Forrar el L-stand blanco con una textura de madera de abedul o pino claro (matching con la madera de la foto de referencia).</p>
+                                <span class="why-works"><strong>Por qué destaca:</strong> Aporta calidez orgánica nórdica y complementa la paleta azul y marrón de la tipografía.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script link -->
+    <script src="app.js"></script>
+</body>
+</html>
