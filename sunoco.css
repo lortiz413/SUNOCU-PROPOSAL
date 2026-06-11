@@ -1823,7 +1823,7 @@ body {
         min-height: 100vh;
         overflow: visible !important;
         scroll-snap-align: none !important;
-        padding: 100px 6% !important;
+        padding: 130px 6% 60px !important; /* Pushes content down below the fixed header */
     }
     .slide-bg, .slide-bg-split {
         height: 100% !important;
@@ -1869,5 +1869,27 @@ body {
     .team-grid {
         grid-template-columns: 1fr !important;
         gap: 15px !important;
+    }
+
+    /* Fixed header elements mobile scaling */
+    .brand-logo {
+        height: 40px !important;
+    }
+    .deck-header {
+        padding: 15px 4% !important;
+    }
+    .header-badge {
+        padding: 6px 12px !important;
+        gap: 6px !important;
+    }
+    .badge-accent {
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+    }
+    .badge-separator {
+        display: none !important;
+    }
+    .badge-text {
+        display: none !important;
     }
 }
