@@ -152,20 +152,41 @@ body {
 }
 
 .brand-logo {
-    height: 45px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    height: 70px; /* Increased from 45px */
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+    transition: var(--transition-fast);
+}
+
+.brand-logo:hover {
+    transform: scale(1.05);
+}
+
+.slide-main-logo {
+    animation: zoomLogo 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes zoomLogo {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .header-badge {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(10, 15, 26, 0.6);
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid var(--border-white-10);
+    gap: 12px;
+    background: rgba(10, 15, 26, 0.85);
+    padding: 12px 24px; /* Increased from 8px 16px */
+    border-radius: 6px;
+    border: 1px solid var(--border-glass);
     backdrop-filter: var(--glass-blur);
     pointer-events: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .badge-accent {
@@ -303,45 +324,37 @@ body {
     width: 10px;
     height: 10px;
     box-shadow: 0 0 10px var(--color-yellow);
+    position: relative;
 }
 
-.nav-indicators li.active .label {
-    opacity: 1;
-    color: var(--color-yellow);
-    transform: translateX(0);
-    font-weight: 600;
+.nav-indicators li.active .dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-yellow);
+    animation: pulseRing 1.5s infinite;
+    pointer-events: none;
 }
 
-/* Slide Typography & Typography Accents */
-.slide-label {
-    display: inline-block;
-    font-family: var(--font-accent);
-    color: var(--color-yellow);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.slide-title {
-    font-family: var(--font-headers);
-    font-size: 64px;
-    font-weight: 800;
-    line-height: 1.1;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    color: var(--color-white);
-    margin-bottom: 20px;
-}
-
-.slide-title.large-title {
-    font-size: 76px;
+@keyframes pulseRing {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
 }
 
 .highlight-yellow {
     color: var(--color-yellow);
     text-shadow: 0 0 25px rgba(255, 230, 0, 0.2);
+    animation: glowSweep 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowSweep {
+    from { text-shadow: 0 0 10px rgba(255, 230, 0, 0.2), 0 0 20px rgba(255, 230, 0, 0.1); }
+    to { text-shadow: 0 0 25px rgba(255, 230, 0, 0.6), 0 0 45px rgba(255, 230, 0, 0.3); }
 }
 
 .decor-line {

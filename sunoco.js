@@ -144,8 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // If slide is partially visible, shift background
                 if (Math.abs(offset) < viewportHeight) {
-                    const yPos = -(offset * 0.15); // Parallax factor
-                    bg.style.transform = `scale(1.05) translateY(${yPos}px)`;
+                    const yPos = -(offset * 0.35); // Parallax factor (increased for stronger depth)
+                    bg.style.transform = `scale(1.1) translateY(${yPos}px)`;
                 }
             }
         });
