@@ -1483,51 +1483,106 @@ body {
     opacity: 0.4;
 }
 
-/* Operational Assumptions Slide 17 ghost number */
-.assumptions-box {
+/* Restructured Slide 17 Operational Assumptions */
+.capacity-banner-container {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.capacity-highlight-banner {
+    background: rgba(255, 230, 0, 0.08);
+    border: 1px solid var(--color-yellow);
+    border-radius: 8px;
+    padding: 20px 30px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 40px;
-    margin-top: 35px;
+    gap: 30px;
+    width: 100%;
+    box-shadow: 0 0 25px rgba(255, 230, 0, 0.15);
 }
 
-.assumptions-text {
-    flex: 6;
+.capacity-banner-left {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
 }
 
-.assumptions-text h4 {
+.capacity-label {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.capacity-value {
     font-family: var(--font-headers);
-    font-size: 18px;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--color-yellow);
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
+}
+
+.capacity-unit {
+    font-family: var(--font-accent);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-white);
+    letter-spacing: 1px;
+    margin-left: 5px;
+}
+
+.capacity-banner-right {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 650px;
+    border-left: 2px solid rgba(255, 255, 255, 0.15);
+    padding-left: 24px;
+    text-align: left;
+}
+
+.assumptions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.assumptions-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    backdrop-filter: var(--glass-blur);
+    transition: var(--transition-fast);
+}
+
+.assumptions-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-yellow);
+}
+
+.assumptions-card h4 {
+    font-family: var(--font-headers);
+    font-size: 16px;
+    font-weight: 800;
     text-transform: uppercase;
     color: var(--color-yellow);
     margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    text-align: left;
 }
 
-.ghost-number-container {
-    flex: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-.ghost-label {
-    font-family: var(--font-accent);
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    position: absolute;
-    top: 15px;
-}
-
-.ghost-number {
-    font-family: var(--font-headers);
-    font-weight: 800;
-    font-size: 150px;
-    line-height: 1;
-    letter-spacing: -2px;
-    opacity: 0.15;
+.assumptions-card p {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: left;
 }
 
 /* Additional Services Cards (Slide 18) */
@@ -1894,21 +1949,19 @@ body {
     }
 
     /* Slide 17 Operational Assumptions mobile overrides */
-    .assumptions-box {
+    .capacity-highlight-banner {
         flex-direction: column !important;
-        align-items: center !important;
-        gap: 30px !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+        padding: 20px !important;
     }
-    .assumptions-text {
-        width: 100% !important;
-        flex: none !important;
+    .capacity-banner-right {
+        border-left: none !important;
+        padding-left: 0 !important;
+        font-size: 13.5px !important;
     }
-    .ghost-number-container {
-        width: 100% !important;
-        flex: none !important;
-        margin-top: 20px !important;
-    }
-    .ghost-number {
-        font-size: 110px !important;
+    .assumptions-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
     }
 }
