@@ -28,29 +28,24 @@
         </div>
     </header>
 
-    <!-- Navigation Overlay -->
+    <!-- Navigation Overlay (SVG Racetrack) -->
     <nav class="deck-nav" aria-label="Slide Navigation">
-        <ul class="nav-indicators" id="nav-indicators">
-            <li data-slide="0" class="active"><span class="dot"></span><span class="label">01 Cover</span></li>
-            <li data-slide="1"><span class="dot"></span><span class="label">02 Why This Moment</span></li>
-            <li data-slide="2"><span class="dot"></span><span class="label">03 Our Perspective</span></li>
-            <li data-slide="3"><span class="dot"></span><span class="label">04 Our Approach</span></li>
-            <li data-slide="4"><span class="dot"></span><span class="label">05 Strategic Planning</span></li>
-            <li data-slide="5"><span class="dot"></span><span class="label">06 Campaign Dev</span></li>
-            <li data-slide="6"><span class="dot"></span><span class="label">07 Engagement</span></li>
-            <li data-slide="7"><span class="dot"></span><span class="label">08 Media & Perf</span></li>
-            <li data-slide="8"><span class="dot"></span><span class="label">09 Operating Rhythm</span></li>
-            <li data-slide="9"><span class="dot"></span><span class="label">10 Experience</span></li>
-            <li data-slide="10"><span class="dot"></span><span class="label">11 The Team</span></li>
-            <li data-slide="11"><span class="dot"></span><span class="label">12 Network</span></li>
-            <li data-slide="12"><span class="dot"></span><span class="label">13 Success Measured</span></li>
-            <li data-slide="13"><span class="dot"></span><span class="label">14 Services Retainer</span></li>
-            <li data-slide="14"><span class="dot"></span><span class="label">15 Media Retainer</span></li>
-            <li data-slide="15"><span class="dot"></span><span class="label">16 Media Investment</span></li>
-            <li data-slide="16"><span class="dot"></span><span class="label">17 Assumptions</span></li>
-            <li data-slide="17"><span class="dot"></span><span class="label">18 Add Services</span></li>
-            <li data-slide="18"><span class="dot"></span><span class="label">19 Let's Build</span></li>
-        </ul>
+        <div class="racetrack-container">
+            <svg class="racetrack-svg" viewBox="0 0 80 800" preserveAspectRatio="none">
+                <!-- Base Track -->
+                <path id="racetrack-path-base" d="M 40,15 C 25,120 55,200 40,280 C 25,360 55,440 40,520 C 25,600 55,680 40,765 C 30,780 35,790 40,795" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-linecap="round"></path>
+                <!-- Active Progress Track -->
+                <path id="racetrack-path-active" d="M 40,15 C 25,120 55,200 40,280 C 25,360 55,440 40,520 C 25,600 55,680 40,765 C 30,780 35,790 40,795" fill="none" stroke="var(--color-yellow)" stroke-width="4" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"></path>
+            </svg>
+            <!-- Race Car Indicator -->
+            <div id="racetrack-car" class="racetrack-car">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="var(--color-red)">
+                    <path d="M12,2L5,18L12,15L19,18L12,2Z" style="filter: drop-shadow(0 0 6px var(--color-red));"></path>
+                </svg>
+            </div>
+            <!-- Checkpoints (19 slides) will be dynamically added here by JS to sit exactly on the path -->
+            <div class="racetrack-checkpoints" id="racetrack-checkpoints"></div>
+        </div>
     </nav>
 
     <!-- Main Scroll Container -->
@@ -80,6 +75,13 @@
             </div>
             <!-- Diamond accent container (matches README.md BG-01 description) -->
             <div class="diamond-cover-glow reveal-item delay-2"></div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 02: WHY THIS MOMENT MATTERS -->
@@ -156,6 +158,13 @@
                 </div>
             </div>
             <div class="bottom-accent-line"></div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 04: OUR APPROACH -->
@@ -230,6 +239,13 @@
                     </div>
                 </div>
             </div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 06: CAMPAIGN DEVELOPMENT -->
@@ -244,7 +260,7 @@
                     <p class="slide-description" style="max-width: 700px; margin-bottom: 25px; color: rgba(255,255,255,0.85);">
                         From high-end concepts to cross-channel deployment, we translate strategy into compelling visual communication.
                     </p>
-                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;">
+                    <div class="campaign-split-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center;">
                         <ul class="check-list" style="display: flex; flex-direction: column; gap: 14px; font-size: 16px;">
                             <li><span>Creative concept development</span></li>
                             <li><span>Integrated 360° campaign development</span></li>
@@ -253,9 +269,9 @@
                             <li><span>Campaign execution oversight & production coordination</span></li>
                             <li><span>Executive presentations and concept development</span></li>
                         </ul>
-                        <div class="film-item" style="border: 2px solid var(--color-yellow); background: var(--bg-glass); backdrop-filter: var(--glass-blur); padding: 15px; box-shadow: 0 0 30px rgba(255, 230, 0, 0.2); transform: scale(1.05);">
-                            <div class="film-thumb" style="background-image: url('assets/sunoco_campaign_production.png'); aspect-ratio: 16/11; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.15);"></div>
-                            <h5 style="font-size: 15px; letter-spacing: 1px; color: var(--color-yellow);">CAMPAIGN PRODUCTION ON SET</h5>
+                        <div class="film-item campaign-large-media" style="border: 2px solid var(--color-yellow); background: var(--bg-glass); backdrop-filter: var(--glass-blur); padding: 20px; box-shadow: 0 0 40px rgba(255, 230, 0, 0.3); transform: scale(1.05); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);">
+                            <div class="film-thumb" style="background-image: url('assets/sunoco_campaign_production.png'); aspect-ratio: 16/10; margin-bottom: 12px; border: 1.5px solid rgba(255,255,255,0.2); width: 100%; height: 42vh; background-size: cover; background-position: center;"></div>
+                            <h5 style="font-size: 18px; letter-spacing: 1.5px; color: var(--color-yellow); font-family: var(--font-headers); font-weight: 800; text-transform: uppercase;">CAMPAIGN PRODUCTION ON SET</h5>
                         </div>
                     </div>
                 </div>
@@ -292,6 +308,13 @@
                 </div>
             </div>
             <div class="center-right-warm-glow"></div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 08: MEDIA, INTELLIGENCE & PERFORMANCE -->
@@ -384,6 +407,13 @@
                 </div>
             </div>
             <div class="rhythm-decor-diamond"></div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 10: BUILT ON EXPERIENCE -->
@@ -459,6 +489,13 @@
                 </div>
             </div>
             <div class="team-decor-diamond"></div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 12: EXTENDED SUPPORT NETWORK -->
@@ -554,6 +591,13 @@
                 </div>
             </div>
             <div class="dashboard-decor-diamond"></div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 14: INVESTMENT MODEL ($17,000) -->
@@ -651,6 +695,13 @@
                     </div>
                 </div>
             </div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
         <!-- SLIDE 16: MEDIA INVESTMENT MANAGEMENT -->
@@ -711,6 +762,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
             </div>
         </section>
 
@@ -782,6 +840,13 @@
                 </div>
             </div>
             <div class="closing-decor-diamond"></div>
+            <!-- Drawing SVG Chevron -->
+            <div class="decor-chevron-container">
+                <svg class="decor-chevron-svg" viewBox="0 0 100 60" width="80" height="48">
+                    <path class="chevron-path-1" d="M10,10 L50,50 L90,10" fill="none" stroke="rgba(255, 230, 0, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                    <path class="chevron-path-2" d="M10,25 L50,55 L90,25" fill="none" stroke="rgba(227, 46, 61, 0.15)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </section>
 
     </main>

@@ -1,20 +1,88 @@
 /**
- * Sunoco Pitch Deck Presentation Logic
+ * Sunoco Pitch Deck Presentation Logic - Premium Scrollytelling Edition
  * Handles scroll-snapping detection, active slide updates, custom canvas animation,
- * navigation dots synchronization, progress bars, and animated statistics.
+ * dynamic SVG racetrack indicators with rotating car, Apple-style scroll zoom reveals,
+ * reading progress bar, counter animations, and cursor spotlights.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     const deckContainer = document.getElementById('deck-container');
     const slides = document.querySelectorAll('.slide');
-    const navItems = document.querySelectorAll('#nav-indicators li');
     const slideNumberEl = document.getElementById('slide-number');
     const progressFillEl = document.getElementById('progress-fill');
     
     let currentActiveIndex = 0;
     
+    // Slide list metadata for racetrack checkpoints
+    const slideInfo = [
+        { index: 0, label: "01 Cover" },
+        { index: 1, label: "02 Why This Moment" },
+        { index: 2, label: "03 Our Perspective" },
+        { index: 3, label: "04 Our Approach" },
+        { index: 4, label: "05 Strategic Planning" },
+        { index: 5, label: "06 Campaign Dev" },
+        { index: 6, label: "07 Engagement" },
+        { index: 7, label: "08 Media & Perf" },
+        { index: 8, label: "09 Operating Rhythm" },
+        { index: 9, label: "10 Experience" },
+        { index: 10, label: "11 The Team" },
+        { index: 11, label: "12 Network" },
+        { index: 12, label: "13 Success Measured" },
+        { index: 13, label: "14 Services Retainer" },
+        { index: 14, label: "15 Media Retainer" },
+        { index: 15, label: "16 Media Investment" },
+        { index: 16, label: "17 Assumptions" },
+        { index: 17, label: "18 Add Services" },
+        { index: 18, label: "19 Let's Build" }
+    ];
+
     // ==========================================
-    // 1. Intersection Observer for Slide Active State
+    // 1. Initialize Racetrack Checkpoints along the SVG Path
+    // ==========================================
+    const checkpointsContainer = document.getElementById('racetrack-checkpoints');
+    const basePath = document.getElementById('racetrack-path-base');
+    
+    function initCheckpoints() {
+        if (checkpointsContainer && basePath) {
+            // Clear existing checkpoints if any
+            checkpointsContainer.innerHTML = '';
+            const pathLength = basePath.getTotalLength();
+            
+            slideInfo.forEach((slide, idx) => {
+                const dist = (idx / (slideInfo.length - 1)) * pathLength;
+                const pt = basePath.getPointAtLength(dist);
+                
+                const checkpoint = document.createElement('div');
+                checkpoint.className = 'racetrack-checkpoint';
+                if (idx === 0) checkpoint.classList.add('active');
+                checkpoint.setAttribute('data-slide', idx);
+                
+                // Map SVG coordinate space (0-80, 0-800) to percentages
+                checkpoint.style.left = `${(pt.x / 80) * 100}%`;
+                checkpoint.style.top = `${(pt.y / 800) * 100}%`;
+                
+                checkpoint.innerHTML = `
+                    <span class="checkpoint-dot"></span>
+                    <span class="checkpoint-label">${slide.label}</span>
+                `;
+                
+                checkpoint.addEventListener('click', () => {
+                    scrollToSlide(idx);
+                });
+                
+                checkpointsContainer.appendChild(checkpoint);
+            });
+        }
+    }
+    
+    // Initialize checkpoints
+    initCheckpoints();
+    
+    // In case fonts or SVG render slightly later, wait and recalculate once
+    setTimeout(initCheckpoints, 500);
+
+    // ==========================================
+    // 2. Intersection Observer for Slide Active State
     // ==========================================
     const observerOptions = {
         root: deckContainer,
@@ -40,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 2. Set Active Slide State (UI Updates)
+    // 3. Set Active Slide State (UI Updates)
     // ==========================================
     function setActiveSlide(index) {
         currentActiveIndex = index;
@@ -54,12 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update Nav Indicators
-        navItems.forEach((item, idx) => {
+        // Update Racetrack Checkpoints active state
+        const checkpoints = document.querySelectorAll('.racetrack-checkpoint');
+        checkpoints.forEach((cp, idx) => {
             if (idx === index) {
-                item.classList.add('active');
+                cp.classList.add('active');
             } else {
-                item.classList.remove('active');
+                cp.classList.remove('active');
             }
         });
 
@@ -68,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalSlides = slides.length.toString().padStart(2, '0');
         slideNumberEl.textContent = `${displayIndex} / ${totalSlides}`;
 
-        // Update Progress Bar
+        // Update Reading Progress Bar
         const percentage = ((index + 1) / slides.length) * 100;
         progressFillEl.style.width = `${percentage}%`;
 
@@ -78,17 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ==========================================
-    // 3. Navigation Click Navigation Handlers
-    // ==========================================
-    navItems.forEach((item) => {
-        item.addEventListener('click', () => {
-            const slideIdx = parseInt(item.getAttribute('data-slide'), 10);
-            scrollToSlide(slideIdx);
-        });
-    });
-
-    // Make scrollToSlide global so it can be called from buttons (Slide 19)
+    // Make scrollToSlide global so it can be called from button controls
     window.scrollToSlide = function(index) {
         if (slides[index]) {
             slides[index].scrollIntoView({ behavior: 'smooth' });
@@ -102,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateCounters(activeSlide) {
         const counters = activeSlide.querySelectorAll('.counter');
         counters.forEach(counter => {
-            // If already animated, skip
             if (counter.classList.contains('animated')) return;
             
             const targetVal = parseInt(counter.getAttribute('data-target'), 10);
@@ -129,27 +187,105 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 5. Parallax Background Simulation on Scroll
+    // 5. Scroll Handler: Racetrack Draw, Car Position & Apple Zoom transitions
     // ==========================================
+    let isScrolling = false;
     deckContainer.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                handleScrollEffects();
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    });
+
+    function handleScrollEffects() {
         const scrollTop = deckContainer.scrollTop;
         const viewportHeight = window.innerHeight;
+        const scrollHeight = deckContainer.scrollHeight;
         
-        slides.forEach((slide, idx) => {
-            const bg = slide.querySelector('.slide-bg');
-            if (bg) {
-                // Calculate slide relative position in viewport
-                const slideTop = idx * viewportHeight;
-                const offset = scrollTop - slideTop;
+        // Total scroll progress percentage
+        const maxScroll = scrollHeight - viewportHeight;
+        const scrollPercent = maxScroll > 0 ? scrollTop / maxScroll : 0;
+        
+        // 1. Draw racetrack path
+        const activePath = document.getElementById('racetrack-path-active');
+        if (activePath) {
+            const totalLength = activePath.getTotalLength();
+            const drawLength = totalLength * scrollPercent;
+            activePath.style.strokeDasharray = `${totalLength}`;
+            activePath.style.strokeDashoffset = `${totalLength - drawLength}`;
+            
+            // 2. Position and rotate the car
+            const car = document.getElementById('racetrack-car');
+            if (car) {
+                const p = activePath.getPointAtLength(drawLength);
+                const nextDist = Math.min(drawLength + 3, totalLength);
+                const pNext = activePath.getPointAtLength(nextDist);
                 
-                // If slide is partially visible, shift background
-                if (Math.abs(offset) < viewportHeight) {
-                    const yPos = -(offset * 0.35); // Parallax factor (increased for stronger depth)
-                    bg.style.transform = `scale(1.1) translateY(${yPos}px)`;
+                const angle = Math.atan2(pNext.y - p.y, pNext.x - p.x) * 180 / Math.PI;
+                
+                // Position percentages
+                car.style.left = `${(p.x / 80) * 100}%`;
+                car.style.top = `${(p.y / 800) * 100}%`;
+                car.style.transform = `translate(-50%, -50%) rotate(${angle - 90}deg)`;
+            }
+        }
+        
+        // 3. Apple-style Zoom and Parallax Transitions on visible slides
+        slides.forEach((slide, idx) => {
+            const bg = slide.querySelector('.slide-bg, .slide-bg-split');
+            const content = slide.querySelector('.slide-content');
+            
+            const slideTop = idx * viewportHeight;
+            const offset = scrollTop - slideTop;
+            const ratio = offset / viewportHeight; // -1 to 1
+            
+            if (Math.abs(ratio) < 1) {
+                // Background transform
+                if (bg) {
+                    let scale = 1.05;
+                    let opacity = 1;
+                    let yOffset = ratio * 60; // Parallax translation
+                    
+                    if (ratio < 0) {
+                        // Leaving slide (scrolling up)
+                        scale = 1.05 - Math.abs(ratio) * 0.15; // Shrinks down
+                        opacity = 1 - Math.abs(ratio) * 0.9;
+                    } else {
+                        // Entering slide (scrolling down)
+                        scale = 1.05 + ratio * 0.15; // Enters from zoom
+                        opacity = 1 - ratio * 0.9;
+                    }
+                    
+                    bg.style.transform = `scale(${scale}) translateY(${yOffset}px)`;
+                    bg.style.opacity = opacity;
+                }
+                
+                // Content transform
+                if (content) {
+                    const contentOpacity = 1 - Math.abs(ratio) * 1.6;
+                    const contentY = ratio * -100; // Floating layered effect
+                    content.style.opacity = Math.max(0, contentOpacity);
+                    content.style.transform = `translateY(${contentY}px)`;
+                }
+            } else {
+                // Clean up styles for off-screen slides
+                if (bg) {
+                    bg.style.transform = '';
+                    bg.style.opacity = 0;
+                }
+                if (content) {
+                    content.style.opacity = 0;
+                    content.style.transform = '';
                 }
             }
         });
-    });
+    }
+
+    // Call scroll effects initially to set correct layout states on load
+    handleScrollEffects();
 
     // ==========================================
     // 6. Interactive Network Constellation (Slide 12)
@@ -162,7 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let width = canvas.width = canvas.offsetWidth;
         let height = canvas.height = canvas.offsetHeight;
         
-        // Handle resize
         window.addEventListener('resize', () => {
             if (canvas.offsetWidth > 0 && canvas.offsetHeight > 0) {
                 width = canvas.width = canvas.offsetWidth;
@@ -170,12 +305,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Constellation settings
         const particles = [];
         const particleCount = 45;
         const connectionDistance = 120;
         
-        // Central Node (Hub representation: Peerless Oil Puerto Rico)
         const centralNode = {
             x: width * 0.7,
             y: height * 0.5,
@@ -184,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
             glow: 20
         };
 
-        // Initialize particles
         class Particle {
             constructor() {
                 this.reset();
@@ -193,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
             reset() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.radius = Math.random() * 2 + 2; // smaller dots
+                this.radius = Math.random() * 2 + 2;
                 this.speedX = (Math.random() - 0.5) * 0.4;
                 this.speedY = (Math.random() - 0.5) * 0.4;
                 this.opacity = Math.random() * 0.5 + 0.3;
@@ -203,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Bounce at edges
                 if (this.x < 0 || this.x > width) this.speedX *= -1;
                 if (this.y < 0 || this.y > height) this.speedY *= -1;
             }
@@ -220,15 +351,12 @@ document.addEventListener('DOMContentLoaded', () => {
             particles.push(new Particle());
         }
 
-        // Animation Loop
         function animateConstellation() {
             ctx.clearRect(0, 0, width, height);
 
-            // Dynamically adjust center position in case layout resized
             centralNode.x = width * 0.7;
             centralNode.y = height * 0.5;
 
-            // Draw central node glow
             ctx.beginPath();
             const glowGradient = ctx.createRadialGradient(
                 centralNode.x, centralNode.y, 1, 
@@ -241,21 +369,18 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fillStyle = glowGradient;
             ctx.fill();
 
-            // Draw central node core
             ctx.beginPath();
             ctx.arc(centralNode.x, centralNode.y, centralNode.radius, 0, Math.PI * 2);
             ctx.fillStyle = centralNode.color;
             ctx.shadowColor = '#FFE600';
             ctx.shadowBlur = 10;
             ctx.fill();
-            ctx.shadowBlur = 0; // Reset shadow blur
+            ctx.shadowBlur = 0;
 
-            // Update & Draw particles
             particles.forEach((p, idx) => {
                 p.update();
                 p.draw();
 
-                // Draw connections between particles
                 for (let j = idx + 1; j < particles.length; j++) {
                     const p2 = particles[j];
                     const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
@@ -271,14 +396,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // Draw connection to the central node
                 const distToCenter = Math.hypot(p.x - centralNode.x, p.y - centralNode.y);
                 if (distToCenter < connectionDistance * 2.2) {
                     const alpha = (1 - distToCenter / (connectionDistance * 2.2)) * 0.25;
                     ctx.beginPath();
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(centralNode.x, centralNode.y);
-                    // Yellow connections to main hub
                     ctx.strokeStyle = `rgba(255, 230, 0, ${alpha})`;
                     ctx.lineWidth = 0.7;
                     ctx.stroke();
@@ -288,15 +411,12 @@ document.addEventListener('DOMContentLoaded', () => {
             animationFrameId = requestAnimationFrame(animateConstellation);
         }
 
-        // Play/Pause canvas loop based on if Slide 12 is active (saves CPU/battery)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Start canvas loop
                     cancelAnimationFrame(animationFrameId);
                     animateConstellation();
                 } else {
-                    // Stop loop
                     cancelAnimationFrame(animationFrameId);
                 }
             });
@@ -309,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 7. Interactive 3D Card Tilting Effect
+    // 7. Interactive 3D Card Tilting & Spotlight Effect
     // ==========================================
     const tiltCards = document.querySelectorAll('.glass-stat-card, .kpi-card, .rhythm-block, .team-card, .investment-tag-card, .service-icon-card, .quadrant-card');
     
@@ -319,24 +439,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            // Calculate relative offset from center of card (-0.5 to 0.5)
             const xc = rect.width / 2;
             const yc = rect.height / 2;
             
-            // Maximum tilt rotation (degrees)
             const maxTilt = 8;
             const rotateX = ((yc - y) / yc) * maxTilt;
             const rotateY = ((x - xc) / xc) * maxTilt;
             
-            // Apply style transformations
+            // 3D Tilt + Cursor radial gradient spotlight reflection
+            card.style.background = `radial-gradient(circle 250px at ${x}px ${y}px, rgba(255, 230, 0, 0.15) 0%, rgba(3, 30, 63, 0.65) 80%)`;
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
             card.style.boxShadow = `0 15px 30px rgba(255, 230, 0, 0.15), 0 30px 60px rgba(0, 0, 0, 0.6)`;
             card.style.borderColor = `rgba(255, 230, 0, 0.4)`;
         });
         
         card.addEventListener('mouseleave', () => {
-            // Smoothly reset transformations on leave
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            card.style.background = '';
             card.style.boxShadow = '';
             card.style.borderColor = '';
         });
