@@ -125,11 +125,11 @@ body {
 }
 
 .content-left-60 {
-    max-width: 60%;
+    max-width: 70%;
 }
 
 .content-center {
-    max-width: 800px;
+    max-width: 950px;
     margin: 0 auto;
 }
 
@@ -193,19 +193,19 @@ body {
     font-family: var(--font-accent);
     color: var(--color-yellow);
     font-weight: 600;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 2px;
 }
 
 .badge-separator {
     color: rgba(255,255,255,0.3);
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .badge-text {
     font-family: var(--font-accent);
     color: rgba(255, 255, 255, 0.7);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 1.5px;
 }
 
@@ -231,7 +231,7 @@ body {
 .slide-number {
     font-family: var(--font-headers);
     font-weight: 800;
-    font-size: 18px;
+    font-size: 22px;
     letter-spacing: 1px;
     color: var(--color-yellow);
 }
@@ -254,7 +254,7 @@ body {
 
 .footer-text {
     font-family: var(--font-accent);
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 1.5px;
     color: rgba(255, 255, 255, 0.4);
 }
@@ -295,7 +295,7 @@ body {
 
 .nav-indicators .label {
     font-family: var(--font-accent);
-    font-size: 10px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -371,10 +371,36 @@ body {
     margin: 0 auto 24px;
 }
 
+.slide-label {
+    display: inline-block;
+    font-family: var(--font-accent);
+    color: var(--color-yellow);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.slide-title {
+    font-family: var(--font-headers);
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: var(--color-white);
+    margin-bottom: 20px;
+}
+
+.slide-title.large-title {
+    font-size: 86px;
+}
+
 .slide-description {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 30px;
 }
 
@@ -394,14 +420,14 @@ body {
 
 .meta-title {
     font-family: var(--font-accent);
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 1.5px;
     color: rgba(255, 255, 255, 0.4);
 }
 
 .meta-val {
     font-family: var(--font-headers);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -432,7 +458,7 @@ body {
 .accent-bullets li {
     position: relative;
     padding-left: 20px;
-    font-size: 14px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.85);
 }
 
