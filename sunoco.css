@@ -1788,3 +1788,29 @@ body {
 #slide-01 .slide-overlay-gradient {
     background: linear-gradient(90deg, rgba(3, 30, 63, 0.95) 0%, rgba(3, 30, 63, 0.65) 45%, rgba(10, 15, 26, 0.15) 100%) !important;
 }
+
+/* Slide 17 Capacity Pulse Animation */
+@keyframes dynamic-scale-pulse {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.05); filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 230, 0, 0.4)); }
+}
+.dynamic-pulse {
+    animation: dynamic-scale-pulse 3.5s ease-in-out infinite;
+}
+
+/* Mobile responsive layout height and scroll snap overrides */
+@media (max-width: 992px) {
+    .deck-container {
+        scroll-snap-type: none !important;
+    }
+    .slide {
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
+        scroll-snap-align: none !important;
+        padding: 100px 6% !important;
+    }
+    .slide-bg, .slide-bg-split {
+        height: 100% !important;
+    }
+}

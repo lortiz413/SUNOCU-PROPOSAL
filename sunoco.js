@@ -238,9 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const bg = slide.querySelector('.slide-bg, .slide-bg-split');
             const content = slide.querySelector('.slide-content');
             
-            const slideTop = idx * viewportHeight;
+            const slideTop = slide.offsetTop;
+            const slideHeight = slide.offsetHeight;
             const offset = scrollTop - slideTop;
-            const ratio = offset / viewportHeight; // -1 to 1
+            const ratio = offset / slideHeight; // -1 to 1
             
             if (Math.abs(ratio) < 1) {
                 // Background transform
