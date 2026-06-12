@@ -2148,5 +2148,8 @@ body {
         aspect-ratio: 1/1 !important;
         max-height: 280px !important;
         width: 100% !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
     }
 }
