@@ -122,6 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Hide main header on cover slide (slide 1)
+        const headerEl = document.querySelector('.deck-header');
+        if (headerEl) {
+            if (index === 0) {
+                headerEl.classList.add('on-cover');
+            } else {
+                headerEl.classList.remove('on-cover');
+            }
+        }
+
         // Update Racetrack Checkpoints active state
         const checkpoints = document.querySelectorAll('.racetrack-checkpoint');
         checkpoints.forEach((cp, idx) => {
